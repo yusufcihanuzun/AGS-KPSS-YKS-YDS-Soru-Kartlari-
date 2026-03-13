@@ -79,6 +79,16 @@
         gap: 24px;
     }
     .mobile-menu.active { display: flex; }
+    /* Smart Download Button */
+    .smart-download-btn {
+        @apply fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] md:hidden
+               bg-gradient-to-r from-primary to-accent text-white px-8 py-4 
+               rounded-full font-bold shadow-2xl shadow-primary/40 
+               flex items-center gap-3 scale-0 transition-all duration-500;
+    }
+    .smart-download-btn.show {
+        @apply scale-100;
+    }
 </style>
 </head>
 
@@ -148,6 +158,15 @@
                     başarıyı oyun gibi yakala!
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-6">
+                    <!-- Hero Smart Button (Mobile Only) -->
+                    <a id="smartHeroBtn"
+                        class="md:hidden group relative px-10 py-5 bg-gradient-to-r from-primary to-accent text-white font-bold text-xl rounded-3xl shadow-2xl shadow-primary/40 transition-all hover:scale-105 active:scale-95"
+                        href="#">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined font-bold">download</span>
+                            Hemen İndir!
+                        </span>
+                    </a>
                     <a class="group relative px-10 py-5 bg-primary text-white font-bold text-xl rounded-3xl shadow-2xl shadow-primary/40 transition-all hover:scale-105 active:scale-95"
                         href="#indir">
                         <span class="flex items-center gap-2">
@@ -446,26 +465,20 @@
                             <div class="text-white font-bold text-lg leading-tight">Google Play</div>
                         </div>
                     </a>
-                    <!-- App Store Yakında Badge -->
-                    <div class="relative">
-                        <div
-                            class="flex items-center gap-3 bg-black text-white rounded-xl px-6 py-3 min-w-[200px] opacity-80">
-                            <svg class="w-8 h-8 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 16.56 2.93 11.3 4.7 7.72C5.57 5.94 7.36 4.86 9.28 4.84C10.56 4.82 11.78 5.72 12.57 5.72C13.36 5.72 14.85 4.62 16.4 4.8C17.03 4.83 18.8 5.05 19.96 6.68C19.87 6.74 17.57 8.1 17.6 10.89C17.63 14.22 20.5 15.34 20.53 15.35C20.5 15.42 20.06 16.93 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" />
-                            </svg>
-                            <div class="text-left">
-                                <div
-                                    class="text-white/70 text-[10px] font-semibold uppercase tracking-wider leading-none">
-                                    YAKINDA</div>
-                                <div class="text-white font-bold text-lg leading-tight">App Store</div>
-                            </div>
+                    <!-- App Store Badge -->
+                    <a href="https://apps.apple.com/tr/app/ags-kpss-yks-yds-soru-kartlar%C4%B1/id6759535690?l=tr"
+                        target="_blank" rel="noopener"
+                        class="flex items-center gap-3 bg-black text-white rounded-xl px-6 py-3 hover:scale-105 active:scale-95 transition-all shadow-lg min-w-[200px]">
+                        <svg class="w-8 h-8 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 16.56 2.93 11.3 4.7 7.72C5.57 5.94 7.36 4.86 9.28 4.84C10.56 4.82 11.78 5.72 12.57 5.72C13.36 5.72 14.85 4.62 16.4 4.8C17.03 4.83 18.8 5.05 19.96 6.68C19.87 6.74 17.57 8.1 17.6 10.89C17.63 14.22 20.5 15.34 20.53 15.35C20.5 15.42 20.06 16.93 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" />
+                        </svg>
+                        <div class="text-left">
+                            <div class="text-white/70 text-[10px] font-semibold uppercase tracking-wider leading-none">
+                                İNDİR</div>
+                            <div class="text-white font-bold text-lg leading-tight">App Store</div>
                         </div>
-                        <div
-                            class="absolute -top-2 -right-2 bg-tertiary text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md animate-bounce">
-                            Çok Yakında!
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div
                     class="flex items-center justify-center gap-4 text-white/80 font-bold uppercase tracking-widest text-sm mt-8">
@@ -508,8 +521,9 @@
                             </div>
                         </a>
                         <!-- App Store Badge -->
-                        <div
-                            class="flex items-center gap-2.5 bg-slate-800 text-white rounded-xl px-5 py-2.5 opacity-60">
+                        <a href="https://apps.apple.com/tr/app/ags-kpss-yks-yds-soru-kartlar%C4%B1/id6759535690?l=tr"
+                            target="_blank" rel="noopener"
+                            class="flex items-center gap-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl px-5 py-2.5 transition-all">
                             <svg class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 16.56 2.93 11.3 4.7 7.72C5.57 5.94 7.36 4.86 9.28 4.84C10.56 4.82 11.78 5.72 12.57 5.72C13.36 5.72 14.85 4.62 16.4 4.8C17.03 4.83 18.8 5.05 19.96 6.68C19.87 6.74 17.57 8.1 17.6 10.89C17.63 14.22 20.5 15.34 20.53 15.35C20.5 15.42 20.06 16.93 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" />
@@ -517,10 +531,10 @@
                             <div class="text-left">
                                 <div
                                     class="text-white/60 text-[9px] font-semibold uppercase tracking-wider leading-none">
-                                    YAKINDA</div>
+                                    İNDİR</div>
                                 <div class="text-white font-bold text-sm leading-tight">App Store</div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div>
@@ -560,10 +574,78 @@
         </div>
     </footer>
 
+    <!-- Smart Floating Button -->
+    <a id="smartDownloadBtn" href="#" class="smart-download-btn">
+        <span class="material-symbols-outlined font-bold">download</span>
+        <span>Hemen Ücretsiz İndir!</span>
+    </a>
+
     <script>
+        const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.agsapp.quiz&hl=tr";
+        const APP_STORE_URL = "https://apps.apple.com/tr/app/ags-kpss-yks-yds-soru-kartlar%C4%B1/id6759535690?l=tr";
+
+        function getOS() {
+            const userAgent = window.navigator.userAgent;
+            const platform = window.navigator.platform;
+            const macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'];
+            const windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'];
+            const iosPlatforms = ['iPhone', 'iPad', 'iPod'];
+
+            if (macosPlatforms.indexOf(platform) !== -1) return 'Mac OS';
+            if (iosPlatforms.indexOf(platform) !== -1) return 'iOS';
+            if (windowsPlatforms.indexOf(platform) !== -1) return 'Windows';
+            if (/Android/.test(userAgent)) return 'Android';
+            if (!platform && /Linux/.test(userAgent)) return 'Linux';
+
+            return 'unknown';
+        }
+
+        function updateSmartButton() {
+            const btn = document.getElementById('smartDownloadBtn');
+            const os = getOS();
+
+            if (os === 'iOS') {
+                btn.href = APP_STORE_URL;
+            } else if (os === 'Android') {
+                btn.href = GOOGLE_PLAY_URL;
+            } else {
+                // Desktop or unknown: scroll to download section
+                btn.href = "#indir";
+            }
+
+            // Show button after a small delay
+            setTimeout(() => {
+                btn.classList.add('show');
+            }, 1000);
+        }
+
         function toggleMenu() {
             document.getElementById('mobileMenu').classList.toggle('active');
         }
+
+        // Initialize on load
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('smartDownloadBtn');
+            if (window.scrollY > 300) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        });
+
+        // Update link immediately
+        function initSmartLinks() {
+            const os = getOS();
+            const floatingBtn = document.getElementById('smartDownloadBtn');
+            const heroBtn = document.getElementById('smartHeroBtn');
+
+            const targetUrl = os === 'iOS' ? APP_STORE_URL : (os === 'Android' ? GOOGLE_PLAY_URL : "#indir");
+
+            if (floatingBtn) floatingBtn.href = targetUrl;
+            if (heroBtn) heroBtn.href = targetUrl;
+        }
+
+        initSmartLinks();
     </script>
 </body>
 
